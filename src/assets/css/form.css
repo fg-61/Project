@@ -29,7 +29,7 @@ input {
 	border: 1px solid #ccc;
 }
 
-input[type="submit"] {
+input[type="button"] {
 	background-color: #059862;
 	color: white;
 	font-size: medium;
