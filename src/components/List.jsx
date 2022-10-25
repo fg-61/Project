@@ -1,16 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../assets/css/list.css"
+import SearchBar from './SearchBar'
 
 const List = ({ title, persons, setPersons }) => {
     const deletePerson = (id) => {
         const data = persons.filter(i => i.id !== id)
         setPersons(() => [...data]);
-        console.log(persons)
     }
+
+    const [searchText, setSearchText] = useState("");
+
+    let inputHandler = (e) => {
+        var lowerCase = e.target.value.toLowerCase();
+        setSearchText(lowerCase);
+    };
+
+    const filteredData = persons.filter((person) => {
+        if (searchText === '') {
+            return person;
+        }
+        else {
+            return Object.keys(person).some(key => {
+                return person[key].toString().toLowerCase().includes(searchText)
+            })
+        }
+    })
 
     return (
         <>
             <h3>{title}</h3>
+            <SearchBar inputHandler={inputHandler}></SearchBar>
             <table>
                 <thead>
                     <tr>
@@ -23,10 +42,10 @@ const List = ({ title, persons, setPersons }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {persons && persons.map((person, key) => {
+                    {filteredData && filteredData.map((person, key) => {
                         return (
                             <tr key={key}>
-                                <td>{person.id}</td>
+                                <td>{person.name}</td>
                                 <td>{person.surname}</td>
                                 <td>{person.age}</td>
                                 <td>{person.address}</td>
