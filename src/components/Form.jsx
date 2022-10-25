@@ -12,35 +12,37 @@ const Form = () => {
     const [address, setAddress] = useState('')
 
     return (
-        <div className='form-style-6'>
-            <form style={{ display: "flex", flexDirection: "column" }}>
-                <div style={{display:"flex"}}>
-                    <h2>Ad</h2>
+        <div className='container'>
+            <form className='form-container'>
+                <div className='form-item'>
+                    <span>Ad</span>
                     <input type="text" name="name" onChange={(e) => setName(e.target.value)} placeholder="Adınızı giriniz" />
                 </div>
 
-
-                <label>
-                    Soyad:
+                <div className='form-item'>
+                    <span>Soyad</span>
                     <input type="text" name="surname" onChange={(e) => setSurname(e.target.value)} placeholder="Soyadınızı giriniz" />
-                </label>
+                </div>
 
-                <label>
-                    Yaş:
+                <div className='form-item'>
+                    <span>Yaş</span>
                     <input type="number" name="age" min="0" onChange={(e) => setAge(e.target.value)} placeholder="Yaşınızı giriniz" />
-                </label>
+                </div>
 
-                <label>
-                    Adres:
+                <div className='form-item'>
+                    <span>Adres</span>
                     <input type="text" name="address" onChange={(e) => setAddress(e.target.value)} placeholder="Adresinizi giriniz" />
-                </label>
+                </div>
 
-                <label>
-                    İl:
+                <div className='form-item'>
+                    <span>İl</span>
                     <Dropdown isMulti placeHolder="Select..." options={options} onChange={(value) => setCities(value)} />
-                </label>
+                </div>
 
-                <input type="submit" value="Submit" />
+                <div className='form-item form-submit'>
+                    <input type="submit" value="Kaydet" />
+                </div>
+
             </form>
         </div>
 
