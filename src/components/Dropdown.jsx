@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import "../assets/css/dropdown.css";
 
 const Icon = () => {
@@ -18,7 +17,7 @@ const CloseIcon = () => {
   );
 };
 
-const Dropdown = ({ placeHolder, options, isMulti }) => {
+const Dropdown = ({ placeHolder, options, isMulti, onChange }) => {
   const [showMenu, setShowMenu] = useState(false)
   const [selectedValue, setSelectedValue] = useState(isMulti ? [] : null);
 
@@ -34,8 +33,6 @@ const Dropdown = ({ placeHolder, options, isMulti }) => {
     e.stopPropagation();
     setShowMenu(!showMenu);
   };
-  
-  
 
   const getDisplay = () => {
     if (!selectedValue || selectedValue.length === 0) {
@@ -62,7 +59,9 @@ const Dropdown = ({ placeHolder, options, isMulti }) => {
 
   const onTagRemove = (e, option) => {
     e.stopPropagation();
-    setSelectedValue(removeOption(option));
+    const newValue = removeOption(option);
+    setSelectedValue(newValue);
+    onChange(newValue);
   };
 
   const onItemClick = (option) => {
@@ -77,6 +76,7 @@ const Dropdown = ({ placeHolder, options, isMulti }) => {
       newValue = option;
     }
     setSelectedValue(newValue);
+    onChange(newValue);
   };
 
   const isSelected = (option) => {
