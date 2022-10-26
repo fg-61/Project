@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { options } from '../constant/options';
 import Dropdown from './Dropdown';
 import '../assets/css/form.css'
 
-const Form = ({ persons, setPersons }) => {
+const Form = ({ addPerson }) => {
 
-    const [city, setCity] = useState([]);
+    const [city, setCity] = useState('');
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [age, setAge] = useState(0);
     const [address, setAddress] = useState('')
 
     const savePerson = () => {
-        const id = persons.length != 0 ? Math.max(...persons.map(person => person.id)) + 1 : 1;
+        // const id = persons.length != 0 ? Math.max(...persons.map(person => person.id)) + 1 : 1;
         const newPerson = {
-            id,
             name,
             surname,
             age,
             address,
             city
         }
-        setPersons((persons => [...persons, newPerson]));
+        addPerson(newPerson)
     };
 
     return (

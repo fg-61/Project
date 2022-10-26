@@ -1,27 +1,50 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import Form from "../components/Form";
 import List from "../components/List";
-import { useState } from 'react';
-import "../assets/css/view.css"
-
+import "../assets/css/view.css";
+import { baseManager } from "../request/baseManager";
 
 const PersonListView = () => {
-
+    const i = 0;
     const title = "Kişi Listesi";
     const [persons, setPersons] = useState([])
-        
-    // const removePerson = (id) => {
-        
-    // }
+
+    useEffect(() => {
+        getPersons();
+    }, []);
+
+    const getPersons = () => {
+        baseManager.getAll('/persons')
+            .then((data) => {
+                setPersons(data);
+            })
+    }
+
+    const removePerson = (id) => {
+        baseManager.delete("/persons/" + id)
+            .then((res) => {
+                getPersons();
+            }).finally(() => {
+                getPersons();
+            })
+    }
+
+    const addPerson = (values) => {
+        baseManager.add("/persons", values)
+            .then(() => {
+                getPersons();
+            })
+    }
+
     return (
         <>
             <div className='container'>
                 <div className='card'>
-                    <List setPersons={setPersons} persons={persons} title={title} ></List>
+                    <List persons={persons} title={title} remove={removePerson}></List>
                 </div>
 
                 <div className='card'>
-                    <Form setPersons={setPersons} persons={persons}></Form>
+                    <Form addPerson={addPerson}></Form>
                 </div>
             </div>
         </>
