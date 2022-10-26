@@ -5,9 +5,9 @@ import "../assets/css/view.css";
 import { baseManager } from "../request/baseManager";
 
 const PersonListView = () => {
-    const i = 0;
     const title = "Kişi Listesi";
     const [persons, setPersons] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         getPersons();
@@ -16,11 +16,13 @@ const PersonListView = () => {
     const getPersons = () => {
         baseManager.getAll('/persons')
             .then((data) => {
+                setLoading(false);
                 setPersons(data);
             })
     }
 
     const removePerson = (id) => {
+        setLoading(true)
         baseManager.delete("/persons/" + id)
             .then((res) => {
                 getPersons();
@@ -30,6 +32,7 @@ const PersonListView = () => {
     }
 
     const addPerson = (values) => {
+        setLoading(true)
         baseManager.add("/persons", values)
             .then(() => {
                 getPersons();
@@ -38,15 +41,19 @@ const PersonListView = () => {
 
     return (
         <>
-            <div className='container'>
-                <div className='card'>
-                    <List persons={persons} title={title} remove={removePerson}></List>
-                </div>
+            {
+                loading ? <h2>Yükleniyor . . .</h2> : (
+                    <div className='container'>
+                        <div className='card'>
+                            <List persons={persons} title={title} remove={removePerson}></List>
+                        </div>
 
-                <div className='card'>
-                    <Form addPerson={addPerson}></Form>
-                </div>
-            </div>
+                        <div className='card'>
+                            <Form addPerson={addPerson}></Form>
+                        </div>
+                    </div>
+                )
+            }
         </>
     )
 }
