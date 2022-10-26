@@ -13,6 +13,17 @@ export const baseManager = {
         return response;
     },
 
+    getById: async (url) => {
+
+        let response = {}
+        await fetch(API_URL + url)
+            .then(res => res.json())
+            .then((data) => {
+                response = data;
+            });
+        return response;
+    },
+
     add: async (url, data) => {
 
         let response = {};
@@ -47,7 +58,7 @@ export const baseManager = {
                 'Content-Type': 'application/json'
             }
         }
-        
+
         await fetch(API_URL + url, requestOptions)
             .then(res => res.json())
             .then((data) => {

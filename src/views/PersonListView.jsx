@@ -7,7 +7,9 @@ import { baseManager } from "../request/baseManager";
 const PersonListView = () => {
     const title = "Kişi Listesi";
     const [persons, setPersons] = useState([])
+    const [person, setPerson] = useState({})
     const [loading, setLoading] = useState(true)
+    const [isUpdate, setIsUpdate] = useState(false)
 
     useEffect(() => {
         getPersons();
@@ -18,6 +20,13 @@ const PersonListView = () => {
             .then((data) => {
                 setLoading(false);
                 setPersons(data);
+            })
+    }
+
+    const getPersonById = (id) => {
+        baseManager.getAll('/persons/' + id)
+            .then((data) => {
+                setPerson(data)
             })
     }
 
@@ -39,17 +48,30 @@ const PersonListView = () => {
             })
     }
 
+    const updatePerson = (id, value) => {
+        setLoading(true)
+        baseManager.update("/persons/" + id, value)
+            .then(() => {
+                getPersons();
+                setIsUpdate(false);
+            })
+    }
+    const update = (id) => {
+        getPersonById(id);
+        setIsUpdate(true); //yorum kaldırılacak form kapatılacak get olunca form açılacak
+    }
+
     return (
         <>
             {
                 loading ? <h2>Yükleniyor . . .</h2> : (
                     <div className='container'>
                         <div className='card'>
-                            <List persons={persons} title={title} remove={removePerson}></List>
+                            <List persons={persons} title={title} remove={removePerson} update={update}></List>
                         </div>
 
                         <div className='card'>
-                            <Form addPerson={addPerson}></Form>
+                            <Form addPerson={addPerson} isUpdate={isUpdate} person={person} setPerson={setPerson} updatePerson={updatePerson}></Form>
                         </div>
                     </div>
                 )
