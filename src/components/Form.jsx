@@ -3,7 +3,7 @@ import { options } from '../constant/options';
 import Dropdown from './Dropdown';
 import '../assets/css/form.css'
 
-const Form = ({ addPerson, person, isUpdate, updatePerson, setPerson }) => {
+const Form = ({ addPerson, person, isUpdate, updatePerson }) => {
 
     const [city, setCity] = useState('');
     const [name, setName] = useState('');
@@ -17,9 +17,6 @@ const Form = ({ addPerson, person, isUpdate, updatePerson, setPerson }) => {
         setAge(person.age)
         setAddress(person.address)
         setCity(person.city)
-        return () => {
-            
-        }
     }, [person])
 
 
@@ -48,8 +45,6 @@ const Form = ({ addPerson, person, isUpdate, updatePerson, setPerson }) => {
         }
         addPerson(newPerson)
     }
-
-
 
     return (
         <form className='form-container'>

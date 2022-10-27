@@ -24,10 +24,7 @@ const PersonListView = () => {
     }
 
     const getPersonById = (id) => {
-        baseManager.getAll('/persons/' + id)
-            .then((data) => {
-                setPerson(data)
-            })
+        setPerson( persons.find(x => x.id == id) );
     }
 
     const removePerson = (id) => {
