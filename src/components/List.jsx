@@ -33,7 +33,7 @@ const List = ({ title, persons, remove, update }) => {
                         <th>Ad</th>
                         <th>Soyad</th>
                         <th>Yaş</th>
-                        <th>Adres</th>
+                        <th>İkamet Adresi</th>
                         <th>Yaşanılan İller</th>
                         <th></th>
                         <th></th>

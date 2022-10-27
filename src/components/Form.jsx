@@ -3,7 +3,7 @@ import { options } from '../constant/options';
 import Dropdown from './Dropdown';
 import '../assets/css/form.css'
 
-const Form = ({ addPerson, person, isUpdate, updatePerson, isMulti }) => {
+const Form = ({ addPerson, person, isUpdate, updatePerson, isMulti, setIsUpdate }) => {
 
     const [city, setCity] = useState(isMulti ? [] : "");
     const [name, setName] = useState('');
@@ -65,15 +65,16 @@ const Form = ({ addPerson, person, isUpdate, updatePerson, isMulti }) => {
             </div>
 
             <div className='form-item'>
-                <span>Adres</span>
+                <span>İkamet Adresi</span>
                 <input type="text" defaultValue={isUpdate ? person.address : ""} name="address" onChange={(e) => setAddress(e.target.value)} placeholder="Adresinizi giriniz" />
             </div>
             <div className='form-item'>
-                <span>İl</span>
+                <span>Yaşanılan İller</span>
                 <Dropdown isMulti placeHolder="Select..." values={isUpdate ? person.city : ""} options={options} onChange={(value) => setCity(value)} />
             </div>
             <div className='form-item form-submit'>
-                <input type="button" value={isUpdate ? "Güncelle" : "Kaydet"} onClick={onSubmit} />
+                {isUpdate ? <input type="button" className='btn-cancel' value="İptal" onClick={() => setIsUpdate(false)} /> : null}
+                <input type="button" value={isUpdate ? "Güncelle" : "Kaydet"} className="btn-submit" onClick={onSubmit} />
             </div>
         </form>
     )

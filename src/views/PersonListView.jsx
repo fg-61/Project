@@ -68,7 +68,7 @@ const PersonListView = () => {
                         </div>
 
                         <div className='card'>
-                            <Form isMulti addPerson={addPerson} isUpdate={isUpdate} person={person} setPerson={setPerson} updatePerson={updatePerson}></Form>
+                            <Form isMulti addPerson={addPerson} setIsUpdate={setIsUpdate} isUpdate={isUpdate} person={person} setPerson={setPerson} updatePerson={updatePerson}></Form>
                         </div>
                     </div>
                 )

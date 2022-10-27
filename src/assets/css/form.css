@@ -29,15 +29,25 @@ input {
 	border: 1px solid #ccc;
 }
 
-input[type="button"] {
+.btn-submit {
 	background-color: #059862;
 	color: white;
 	font-size: medium;
 	width: 40%;
+	cursor: pointer;
+}
+
+.btn-cancel {
+	background-color: #f44336;
+	color: white;
+	font-size: medium;
+	width: 30%;
+	margin-right: 10px;
+	cursor: pointer;
 }
 
 .form-submit {
 	padding-top: 20px;
 	padding-bottom: 0px;
-	align-items: flex-end;
+	flex-direction: row;
 }
