@@ -18,7 +18,7 @@ const Form = ({ addPerson, person, isUpdate, updatePerson, setPerson }) => {
         setAddress(person.address)
         setCity(person.city)
         return () => {
-
+            
         }
     }, [person])
 
@@ -28,14 +28,14 @@ const Form = ({ addPerson, person, isUpdate, updatePerson, setPerson }) => {
     }
 
     const update = () => {
-        const newPerson = {
+        const updatedPerson = {
             name,
             surname,
             age,
             address,
             city
         }
-        updatePerson(person.id, newPerson)
+        updatePerson(person.id, updatedPerson)
     }
 
     const create = () => {
@@ -73,10 +73,9 @@ const Form = ({ addPerson, person, isUpdate, updatePerson, setPerson }) => {
                 <span>Adres</span>
                 <input type="text" defaultValue={isUpdate ? person.address : ""} name="address" onChange={(e) => setAddress(e.target.value)} placeholder="Adresinizi giriniz" />
             </div>
-
             <div className='form-item'>
                 <span>İl</span>
-                <Dropdown placeHolder="Select..." options={options} onChange={(value) => setCity(value.label)} />
+                <Dropdown placeHolder="Select..." value={isUpdate ? person.city : ""} options={options} onChange={(value) => setCity(value)} />
             </div>
             <div className='form-item form-submit'>
                 <input type="button" value={isUpdate ? "Güncelle" : "Kaydet"} onClick={onSubmit} />

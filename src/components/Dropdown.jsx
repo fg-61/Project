@@ -17,7 +17,7 @@ const CloseIcon = () => {
   );
 };
 
-const Dropdown = ({ placeHolder, options, isMulti, onChange }) => {
+const Dropdown = ({ placeHolder, options, isMulti, onChange, value }) => {
   const [showMenu, setShowMenu] = useState(false)
   const [selectedValue, setSelectedValue] = useState(isMulti ? [] : null);
 
@@ -29,6 +29,13 @@ const Dropdown = ({ placeHolder, options, isMulti, onChange }) => {
       window.removeEventListener("click", handler);
     };
   });
+
+  useEffect(() => {
+    onItemClick(value)
+    
+  }, [value])
+  
+
   const handleInputClick = (e) => {
     e.stopPropagation();
     setShowMenu(!showMenu);
@@ -41,20 +48,20 @@ const Dropdown = ({ placeHolder, options, isMulti, onChange }) => {
     if (isMulti) {
       return (
         <div className="dropdown-tags">
-          {selectedValue.map((option) => (
-            <div key={option.value} className="dropdown-tag-item">
-              {option.label}
+          {selectedValue.map((option, index) => (
+            <div key={index} className="dropdown-tag-item">
+              {option}
               <span onClick={(e) => onTagRemove(e, option)} className="dropdown-tag-close"><CloseIcon /></span>
             </div>
           ))}
         </div>
       );
     }
-    return selectedValue.label;
+    return selectedValue;
   };
 
   const removeOption = (option) => {
-    return selectedValue.filter((o) => o.value !== option.value);
+    return selectedValue.filter((o) => o !== option);
   };
 
   const onTagRemove = (e, option) => {
@@ -67,7 +74,7 @@ const Dropdown = ({ placeHolder, options, isMulti, onChange }) => {
   const onItemClick = (option) => {
     let newValue;
     if (isMulti) {
-      if (selectedValue.findIndex((o) => o.value === option.value) >= 0) {
+      if (selectedValue.findIndex((o) => o === option) >= 0) {
         newValue = removeOption(option);
       } else {
         newValue = [...selectedValue, option];
@@ -81,15 +88,16 @@ const Dropdown = ({ placeHolder, options, isMulti, onChange }) => {
 
   const isSelected = (option) => {
     if (isMulti) {
-      return selectedValue.filter((o) => o.value === option.value).length > 0;
+      return selectedValue.filter((o) => o === option).length > 0;
     }
     if (!selectedValue) {
       return false;
     }
-    return selectedValue.value === option.value;
+    return selectedValue === option;
   }
 
   return (
+   
     <div>
       <div className="dropdown-container">
         <div onClick={handleInputClick} className="dropdown-input">
@@ -103,13 +111,13 @@ const Dropdown = ({ placeHolder, options, isMulti, onChange }) => {
         </div>
         {showMenu && (
           <div className="dropdown-menu">
-            {options.map((option) => (
+            {options.map((option, index) => (
               <div
                 onClick={() => onItemClick(option)}
-                key={option.value}
+                key={index}
                 className={`dropdown-item ${isSelected(option) && "selected"}`}
               >
-                {option.label}
+                {option}
               </div>
             ))}
           </div>
