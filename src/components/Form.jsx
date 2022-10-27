@@ -3,9 +3,9 @@ import { options } from '../constant/options';
 import Dropdown from './Dropdown';
 import '../assets/css/form.css'
 
-const Form = ({ addPerson, person, isUpdate, updatePerson }) => {
+const Form = ({ addPerson, person, isUpdate, updatePerson, isMulti }) => {
 
-    const [city, setCity] = useState('');
+    const [city, setCity] = useState(isMulti ? [] : "");
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [age, setAge] = useState(0);
@@ -70,7 +70,7 @@ const Form = ({ addPerson, person, isUpdate, updatePerson }) => {
             </div>
             <div className='form-item'>
                 <span>İl</span>
-                <Dropdown placeHolder="Select..." value={isUpdate ? person.city : ""} options={options} onChange={(value) => setCity(value)} />
+                <Dropdown isMulti placeHolder="Select..." values={isUpdate ? person.city : ""} options={options} onChange={(value) => setCity(value)} />
             </div>
             <div className='form-item form-submit'>
                 <input type="button" value={isUpdate ? "Güncelle" : "Kaydet"} onClick={onSubmit} />

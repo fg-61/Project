@@ -17,7 +17,7 @@ const CloseIcon = () => {
   );
 };
 
-const Dropdown = ({ placeHolder, options, isMulti, onChange, value }) => {
+const Dropdown = ({ placeHolder, options, isMulti, onChange, values }) => {
   const [showMenu, setShowMenu] = useState(false)
   const [selectedValue, setSelectedValue] = useState(isMulti ? [] : null);
 
@@ -31,10 +31,16 @@ const Dropdown = ({ placeHolder, options, isMulti, onChange, value }) => {
   });
 
   useEffect(() => {
-    onItemClick(value)
-    
-  }, [value])
-  
+    let newValue;
+    if (isMulti) {
+      newValue = [...values];
+    } else {
+      newValue = values[0];
+    }
+    setSelectedValue(newValue);
+    onChange(newValue);
+  }, [values])
+
 
   const handleInputClick = (e) => {
     e.stopPropagation();
@@ -97,7 +103,7 @@ const Dropdown = ({ placeHolder, options, isMulti, onChange, value }) => {
   }
 
   return (
-   
+
     <div>
       <div className="dropdown-container">
         <div onClick={handleInputClick} className="dropdown-input">
