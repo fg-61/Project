@@ -13,3 +13,145 @@
     align-items: flex-start;
     flex-direction: column;
 }
+
+.container-search-bar {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.search-bar {
+    width: 217px;
+    height: 47px;
+    background-color: #EFEFEF;
+    border-radius: 3px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search-bar input {
+    all: unset;
+    text-transform: capitalize;
+    font-size: 12px;
+    line-height: 18px;
+    color: #6D6E71;
+}
+
+.search-icon {
+    margin: 15px;
+    height: 15px;
+    width: 15px;
+}
+
+.container-table-form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.container-table {
+    border: 1px solid #F0F0F0;
+    border-radius: 3px;
+    padding: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    display: flex;
+    background: #FFFFFF;
+}
+
+table {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border-style: hidden;
+    flex-grow: 1;
+}
+
+table thead {
+    height: 60px;
+}
+
+table th {
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 32px;
+    border: 1px solid #F0F0F0;
+    
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+table td {
+    text-transform: capitalize;
+    text-align: left;
+    padding: 20px;
+    border: 1px solid #F0F0F0;
+
+    font-size: 12px;
+    line-height: 18px;
+    color: #6D6E71;
+}
+
+.btn {
+    box-sizing: border-box;
+    padding-top: 12px;
+    padding-bottom: 11px;
+    border: none;
+    border-radius: 3px;
+
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+    color: #FFFFFF;
+    cursor: pointer;
+
+    text-align: center;
+}
+
+.btn-update {
+    background: #36C15D;
+    margin-left: 10px;
+    width: 69px;
+}
+
+.btn-save {
+    background-color: #36C15D;
+}
+.btn-delete {
+    background: #E31F26;
+    width: 69px;
+}
+
+.container-country-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+}
+
+.row-buttons {
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+th {
+    width: 98px;
+}
+
+th:nth-child(1) {
+    width: 58px;
+}
+
+th:nth-child(5) {
+    width: 216px;
+}
+
+tr:last-child td {
+    padding-bottom: 0px;
+}
