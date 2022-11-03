@@ -97,6 +97,11 @@ table td {
     color: #6D6E71;
 }
 
+.container-loading-text {
+    text-align: center;
+    flex-grow: 2;
+}
+
 .btn {
     box-sizing: border-box;
     padding-top: 12px;
