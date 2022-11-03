@@ -1,11 +1,12 @@
 import './App.css'
-import PersonListView from './views/PersonListView';
+import Container from './components/Container'
+import Header from './components/Header'
 
 function App() {
-
   return (
-    <div className="App">
-      <PersonListView></PersonListView>
+    <div className='App'>
+        <Header></Header>
+        <Container></Container>
     </div>
   )
 }
