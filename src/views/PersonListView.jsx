@@ -5,9 +5,14 @@ import "../assets/css/view.css";
 import { baseManager } from "../request/baseManager";
 
 const PersonListView = () => {
-    const title = "Kişi Listesi";
     const [persons, setPersons] = useState([])
-    const [person, setPerson] = useState({})
+    const [person, setPerson] = useState({
+        name: '',
+        surname: '',
+        age: 0,
+        address: '',
+        cities: []
+    })
     const [loading, setLoading] = useState(true)
     const [isUpdate, setIsUpdate] = useState(false)
 
@@ -24,7 +29,7 @@ const PersonListView = () => {
     }
 
     const getPersonById = (id) => {
-        setPerson( persons.find(x => x.id == id) );
+        setPerson(persons.find(x => x.id == id));
     }
 
     const removePerson = (id) => {
@@ -42,6 +47,13 @@ const PersonListView = () => {
         baseManager.add("/persons", values)
             .then(() => {
                 getPersons();
+                setPerson({
+                    name: '',
+                    surname: '',
+                    age: 0,
+                    address: '',
+                    cities: []
+                })
             })
     }
 
@@ -50,12 +62,19 @@ const PersonListView = () => {
         baseManager.update("/persons/" + id, value)
             .then(() => {
                 getPersons();
+                setPerson({
+                    name: '',
+                    surname: '',
+                    age: 0,
+                    address: '',
+                    cities: []
+                })
                 setIsUpdate(false);
             })
     }
     const update = (id) => {
         getPersonById(id);
-        setIsUpdate(true); //yorum kaldırılacak form kapatılacak get olunca form açılacak
+        setIsUpdate(true);
     }
 
     return (
@@ -64,11 +83,11 @@ const PersonListView = () => {
                 loading ? <h2>Yükleniyor . . .</h2> : (
                     <div className='container'>
                         <div className='card'>
-                            <List persons={persons} title={title} remove={removePerson} update={update}></List>
+                            <List persons={persons} remove={removePerson} update={update}></List>
                         </div>
 
                         <div className='card'>
-                            <Form isMulti addPerson={addPerson} setIsUpdate={setIsUpdate} isUpdate={isUpdate} person={person} setPerson={setPerson} updatePerson={updatePerson}></Form>
+                            <Form person={person} setPerson={setPerson} addPerson={addPerson} updatePerson={updatePerson} setIsUpdate={setIsUpdate} isUpdate={isUpdate} isMulti />
                         </div>
                     </div>
                 )

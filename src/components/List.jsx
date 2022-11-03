@@ -48,7 +48,7 @@ const List = ({ title, persons, remove, update }) => {
                                 <td>{person.surname}</td>
                                 <td>{person.age}</td>
                                 <td>{person.address}</td>
-                                <td>{person.city.sort().join(",")}</td>
+                                <td>{person.cities.sort().join(",")}</td>
                                 <td><button className='btn-delete' onClick={() => remove(person.id)}>Sil</button></td>
                                 <td><button className='btn-update' onClick={() => update(person.id)}>Güncelle</button></td>
                             </tr>

@@ -32,14 +32,12 @@ const Dropdown = ({ placeHolder, options, isMulti, onChange, values }) => {
 
   useEffect(() => {
     let newValue;
-    if (isMulti) {
-      newValue = [...values];
-    } else {
-      newValue = values[0];
-    }
+    isMulti
+      ? newValue = [...values]
+      : newValue = values[0]
     setSelectedValue(newValue);
     onChange(newValue);
-  }, [values])
+  }, [JSON.stringify(values)])
 
 
   const handleInputClick = (e) => {
