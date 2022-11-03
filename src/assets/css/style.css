@@ -155,3 +155,85 @@ th:nth-child(5) {
 tr:last-child td {
     padding-bottom: 0px;
 }
+
+.form {
+    box-sizing: border-box;
+    width: 335px;
+    padding: 20px;
+    background: #FFFFFF;
+    border: 1px solid #F0F0F0;
+    border-radius: 3px;
+}
+
+.form .form-title {
+    margin-top: 11px;
+    margin-bottom: 31px;
+    
+    text-transform: capitalize;
+    text-align: center;
+
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+
+    color: #000000;
+}
+
+.form .form-item span {
+    display: flex;
+    text-transform: capitalize;
+    flex-direction: column;
+
+    font-size: 12px;
+    line-height: 18px;
+
+    color: #6D6E71;
+}
+
+.form .form-item {
+    margin-top: 20px;
+}
+
+.form .form-item input,
+.input-address {
+    width: calc(100% - 30px);
+    padding: 15px;
+
+    background: #FFFFFF;
+    border: 1px solid #F0F0F0;
+    border-radius: 3px;
+
+    text-transform: capitalize;
+    font-size: 12px;
+    line-height: 18px;
+    color: #6D6E71;
+}
+
+.form .form-item input:focus,
+.form .form-item .input-address:focus-visible {
+    outline-width: 0;
+}
+
+.form .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+
+.form .form-buttons .btn {
+    width: 100%;
+}
+
+.form .form-buttons .btn-delete {
+    margin-right: 10px;
+}
+
+.input-address {
+    height: 54px;
+    resize: none;
+}
